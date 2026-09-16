@@ -1,4 +1,4 @@
-# mirage_hud
+# fr_hud
 
 Modern modular HUD for FiveM — merged into **one resource**.
 
@@ -32,14 +32,14 @@ Config.Framework = 'auto' -- 'auto' | 'esx' | 'qb' | 'qbox' | 'standalone'
 
 ## Installation
 
-1. Copy `mirage_hud` into your server `resources` folder  
+1. Copy `fr_hud` into your server `resources` folder  
 2. Add to `server.cfg`:
 
 ```cfg
-ensure mirage_hud
+ensure fr_hud
 ```
 
-3. Restart the server (or `ensure mirage_hud`)
+3. Restart the server (or `ensure fr_hud`)
 
 Stop other HUDs (e.g. `qbx_hud`) to avoid overlapping UI.
 
@@ -69,7 +69,7 @@ On startup the server queries the GitHub repo once and prints a notice to the se
 ```lua
 Config.UpdateCheck = {
     enabled = true,
-    repository = '3597722621/mirage_hud', -- owner/repo, empty disables the check
+    repository = '3597722621/fr_hud', -- owner/repo, empty disables the check
     downloadUrl = '',                      -- empty = repo releases page
     debug = false,                         -- log failures / "already up to date"
 }
@@ -81,7 +81,7 @@ The check reads `api.github.com/repos/<repository>/releases/latest` and falls ba
 
 ### 2.2.0
 
-- **Renamed `nopixel_hud` to `mirage_hud`** (breaking): rename the folder and change `ensure nopixel_hud` to `ensure mirage_hud` in your `server.cfg`
+- **Renamed `nopixel_hud` to `fr_hud`** (breaking): rename the folder and change `ensure nopixel_hud` to `ensure fr_hud` in your `server.cfg`
 - Removed the third-party brand from the resource name, HUD page title, and docs — this project is not affiliated with any RP server
 
 ### 2.1.0

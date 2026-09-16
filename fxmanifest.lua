@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-name 'mirage_hud'
+name 'fr_hud'
 author 'Mirage (merged)'
 description 'Modern modular HUD for FiveM — player / car / minimap / pulse (single resource)'
 version '2.2.0'
