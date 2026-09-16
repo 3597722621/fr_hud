@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoPixel HUD</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- PLAYER HUD -->
+    <div class="hud-container" style="display:none;" id="hud">
+        <div class="mic-wrapper">
+            <div class="mic-container" id="mic-bg">
+                <i class="fa-solid fa-microphone" id="mic-icon"></i>
+            </div>
+        </div>
+        <div class="hud-separator"></div>
+        <div class="stats-container">
+            <div class="bars-row">
+                <div class="bar-column">
+                    <div class="bar-wrapper health-wrapper">
+                        <div class="bar-fill" id="health-fill"></div>
+                        <div class="bar-content">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span>HEALTH</span>
+                        </div>
+                    </div>
+                    <div class="sub-bar-container">
+                        <div class="sub-bar-track">
+                            <div class="sub-bar-fill" id="hunger-fill"></div>
+                        </div>
+                        <div class="sub-icon-bg">
+                            <i class="fa-solid fa-burger sub-icon" id="hunger-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-column">
+                    <div class="bar-wrapper armor-wrapper">
+                        <div class="bar-fill" id="armor-fill"></div>
+                        <div class="bar-content">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>ARMOR</span>
+                        </div>
+                    </div>
+                    <div class="sub-bar-container">
+                        <div class="sub-bar-track">
+                            <div class="sub-bar-fill" id="thirst-fill"></div>
+                        </div>
+                        <div class="sub-icon-bg">
+                            <i class="fa-solid fa-droplet sub-icon" id="thirst-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hud-separator" id="status-separator" style="display: none;"></div>
+        <div class="status-icons-wrapper">
+            <div class="status-icon-circle bleed-circle" id="bleed-container" style="display: none;">
+                <i class="fa-solid fa-droplet"></i>
+            </div>
+            <div class="status-icon-circle bone-circle" id="bone-container" style="display: none;">
+                <i class="fa-solid fa-bone"></i>
+            </div>
+            <div class="status-icon-circle stress-circle" id="stress-bg" style="display: none;">
+                <i class="fa-solid fa-brain" id="stress-icon"></i>
+            </div>
+            <div class="status-icon-circle devmode-circle" id="devmode-container" style="display: none;">
+                <i class="fa-solid fa-code"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-container" id="player-center">
+        <div class="center-bar-wrapper" id="stamina-container" style="display:none;">
+            <i class="fa-solid fa-person-running center-icon" id="stamina-icon"></i>
+            <div class="center-track"><div class="center-fill" id="stamina-fill"></div></div>
+        </div>
+        <div class="center-bar-wrapper" id="oxygen-container" style="display:none;">
+            <i class="fa-solid fa-person-swimming center-icon" id="oxygen-icon"></i>
+            <div class="center-track"><div class="center-fill" id="oxygen-fill"></div></div>
+        </div>
+    </div>
+
+    <div class="weapon-hud" id="weapon-container" style="display: none;">
+        <i class="fa-solid fa-gun weapon-icon"></i>
+        <div class="ammo-clip" id="ammo-clip">0</div>
+        <div class="ammo-sep">|</div>
+        <div class="ammo-total" id="ammo-total">0</div>
+    </div>
+
+    <div class="custom-crosshair" id="crosshair" style="display: none;">
+        <div class="crosshair-dot"></div>
+    </div>
+
+    <div class="cinematic-bar top-bar" id="cinematic-top"></div>
+    <div class="cinematic-bar bottom-bar" id="cinematic-bottom"></div>
+
+    <!-- PULSE HUD -->
+    <div id="pulse-hud" class="hidden">
+        <div class="pulse-wrapper color-cyan">
+            <svg id="pulse-svg" viewBox="0 0 100 100"></svg>
+            <div class="pulse-value" id="pulse-value">68</div>
+            <div class="heart-icon" id="heart-icon">
+                <i class="fa-regular fa-heart"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAR HUD -->
+    <div class="vehicle-hud" id="vehicle-hud" style="display: none;">
+        <div class="speedometer">
+            <svg class="gauges" viewBox="0 0 200 200" style="overflow: visible;">
+                <defs>
+                    <mask id="rpm-mask">
+                        <path fill="none" stroke="white" stroke-width="12" stroke-dasharray="16 2"
+                              d="M 27.3,142.0 A 84,84 0 1,1 172.7,142.0" />
+                    </mask>
+                    <linearGradient id="gas-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ffffff" />
+                        <stop offset="25%" stop-color="#ffffff" />
+                        <stop offset="25.1%" stop-color="#ffff00" />
+                        <stop offset="75%" stop-color="#ffff00" />
+                        <stop offset="75.1%" stop-color="#ff0000" />
+                        <stop offset="100%" stop-color="#ff0000" />
+                    </linearGradient>
+                    <linearGradient id="elec-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00d0ff" />
+                        <stop offset="100%" stop-color="#0055ff" />
+                    </linearGradient>
+                </defs>
+                <path class="rpm-bg" mask="url(#rpm-mask)" d="M 27.3,142.0 A 84,84 0 1,1 172.7,142.0" />
+                <path class="rpm-fg" mask="url(#rpm-mask)" id="rpm-path" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+                      d="M 27.3,142.0 A 84,84 0 1,1 172.7,142.0" style="stroke: url(#gas-grad); stroke-width: 12;" />
+                <path fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" d="M 219.8,40.0 A 134,134 0 0,1 219.8,160.0" />
+                <path class="fuel-bg" fill="none" stroke="rgba(40,40,40,0.9)" stroke-width="8" stroke-linecap="butt" d="M 187.0,145.0 A 98,98 0 0,0 156.6,20.0" />
+                <path class="fuel-fg" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="butt" id="fuel-path" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+                      d="M 187.0,145.0 A 98,98 0 0,0 156.6,20.0" />
+            </svg>
+            <div class="speed-center">
+                <div class="gear-circle"><span id="veh-gear">D</span></div>
+                <span class="gear-label">GEAR</span>
+                <div class="speed-value-container">
+                    <div class="speed-value" id="veh-speed">
+                        <span class="faded-zero">0</span><span class="faded-zero">0</span>1
+                    </div>
+                </div>
+                <div class="speed-unit">KMH</div>
+            </div>
+            <div class="fuel-icon-overlay" id="icon-fuel">
+                <i class="fa-solid fa-gas-pump" id="fuel-type-icon"></i>
+                <i class="fa-solid fa-caret-right" style="font-size: 8px; margin-left: 2px;"></i>
+            </div>
+            <div class="veh-icons">
+                <div class="v-icon" id="icon-lights"><i class="fa-regular fa-lightbulb"></i></div>
+                <div class="v-icon" id="icon-seatbelt"><i class="fa-solid fa-user-slash"></i></div>
+                <div class="v-icon" id="icon-lock"><i class="fa-solid fa-unlock"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-container" id="engine-container" style="display: none;">
+        <div class="center-bar-wrapper">
+            <i class="fa-solid fa-car-burst center-icon" id="engine-icon"></i>
+            <div class="center-track">
+                <div class="center-fill" id="engine-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINIMAP / COMPASS -->
+    <div class="compass-container" id="compass-container" style="display:none;">
+        <div class="waypoint-box" id="waypoint-box" style="display:none;">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span id="waypoint-dist">4.96 mi</span>
+        </div>
+        <div class="compass-degree"><span id="degree">240</span>&deg;</div>
+        <div class="map-ring">
+            <div class="mapborder"></div>
+            <div class="compass-letters" id="compass-letters">
+                <div class="letter n">N</div>
+                <div class="letter e">E</div>
+                <div class="letter s">S</div>
+                <div class="letter w">W</div>
+            </div>
+        </div>
+        <div class="location-info">
+            <div class="zone" id="zone">GALILEE</div>
+            <div class="street" id="street">NORTH CALAFIA WAY</div>
+        </div>
+    </div>
+
+    <div id="safezone-warning" style="display:none; position:absolute; top:0; left:0; width:100vw; height:100vh; background:rgba(15,15,15,0.95); z-index:9999; flex-direction:column; justify-content:center; align-items:center; color:white; font-family:'Montserrat', sans-serif;">
+        <div style="font-size: 80px; color: #e74c3c; margin-bottom: 20px;">⚠️</div>
+        <h1 style="font-size: 40px; margin-bottom: 15px; text-transform: uppercase;">安全区设置不正确</h1>
+        <p style="font-size: 20px; text-align: center; line-height: 1.5; font-weight: 500;">为了让地图和 HUD 正常显示，请将：<br><br>
+        <span style="background: rgba(0,0,0,0.5); padding: 10px 15px; border-radius: 5px; font-weight: 800;">ESC → 设置 → 显示 → 安全区大小</span><br><br>
+        拖到<strong>最右侧（最大）</strong>。</p>
+    </div>
+
+    <script src="scale.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

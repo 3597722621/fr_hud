@@ -1,0 +1,18 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log
+
+# Secrets / local
+.env
+.env.*
+*.pem
+credentials.json
+
+# FiveM / junk
+cache/
+.fxap
