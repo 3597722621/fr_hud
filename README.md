@@ -79,15 +79,11 @@ The check reads `api.github.com/repos/<repository>/releases/latest` and falls ba
 
 ## Changelog
 
-### 2.2.0
+### 1.0.0
 
-- **Renamed `nopixel_hud` to `fr_hud`** (breaking): rename the folder and change `ensure nopixel_hud` to `ensure fr_hud` in your `server.cfg`
-- Removed the third-party brand from the resource name, HUD page title, and docs — this project is not affiliated with any RP server
-
-### 2.1.0
-
-- Added GitHub update check: the server console prints a notice when a newer release/tag exists
-- Comments are now bilingual (English added alongside the original Chinese/Turkish notes)
+- First release under the `fr_hud` name — a modern modular HUD for FiveM
+- Supports **ESX**, **QBCore**, and **Qbox** with auto framework detection
+- GitHub update check: the server console prints a notice when a newer version exists
 
 ## Credits
 

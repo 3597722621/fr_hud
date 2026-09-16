@@ -5,7 +5,7 @@ lua54 'yes'
 name 'fr_hud'
 author 'Mirage (merged)'
 description 'Modern modular HUD for FiveM — player / car / minimap / pulse (single resource)'
-version '2.2.0'
+version '1.0.0'
 
 ui_page 'html/index.html'
 
