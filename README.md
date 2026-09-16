@@ -1,10 +1,10 @@
-# nopixel_hud
+# mirage_hud
 
-NoPixel-inspired modular HUD for FiveM — merged into **one resource**.
+Modern modular HUD for FiveM — merged into **one resource**.
 
 Supports **ESX**, **QBCore**, and **Qbox** with auto framework detection.
 
-> Design inspired by NoPixel-style HUDs. Not affiliated with NoPixel.
+> Design inspired by the HUD style seen on popular GTA RP servers. Not affiliated with or endorsed by any of them.
 
 ## Features
 
@@ -32,14 +32,14 @@ Config.Framework = 'auto' -- 'auto' | 'esx' | 'qb' | 'qbox' | 'standalone'
 
 ## Installation
 
-1. Copy `nopixel_hud` into your server `resources` folder  
+1. Copy `mirage_hud` into your server `resources` folder  
 2. Add to `server.cfg`:
 
 ```cfg
-ensure nopixel_hud
+ensure mirage_hud
 ```
 
-3. Restart the server (or `ensure nopixel_hud`)
+3. Restart the server (or `ensure mirage_hud`)
 
 Stop other HUDs (e.g. `qbx_hud`) to avoid overlapping UI.
 
@@ -69,7 +69,7 @@ On startup the server queries the GitHub repo once and prints a notice to the se
 ```lua
 Config.UpdateCheck = {
     enabled = true,
-    repository = '3597722621/nopixel_hud', -- owner/repo, empty disables the check
+    repository = '3597722621/mirage_hud', -- owner/repo, empty disables the check
     downloadUrl = '',                      -- empty = repo releases page
     debug = false,                         -- log failures / "already up to date"
 }
@@ -79,6 +79,11 @@ The check reads `api.github.com/repos/<repository>/releases/latest` and falls ba
 
 ## Changelog
 
+### 2.2.0
+
+- **Renamed `nopixel_hud` to `mirage_hud`** (breaking): rename the folder and change `ensure nopixel_hud` to `ensure mirage_hud` in your `server.cfg`
+- Removed the third-party brand from the resource name, HUD page title, and docs — this project is not affiliated with any RP server
+
 ### 2.1.0
 
 - Added GitHub update check: the server console prints a notice when a newer release/tag exists
@@ -86,10 +91,10 @@ The check reads `api.github.com/repos/<repository>/releases/latest` and falls ba
 
 ## Credits
 
-- Original modular HUD concept by Mirage (NoPixel-inspired)
+- Original modular HUD concept by Mirage
 - ESX / QB bridge, merge, and scaling adaptations for this package
 
 ## License
 
 Open source for learning and server use.  
-Please keep credits. Do not rebrand as official NoPixel content.
+Please keep credits. Do not republish as the official release of any server or project.

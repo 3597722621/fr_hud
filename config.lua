@@ -24,7 +24,7 @@ Config.UpdateCheck = {
     enabled = true,
     -- GitHub 仓库（owner/repo），留空则关闭检查
     -- GitHub repository (owner/repo), empty disables the check
-    repository = '3597722621/nopixel_hud',
+    repository = '3597722621/mirage_hud',
     -- 提示里的下载地址，留空则自动使用仓库 Releases 页
     -- Download URL shown in the notice, empty uses the repository releases page
     downloadUrl = '',

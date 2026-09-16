@@ -2,10 +2,10 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-name 'nopixel_hud'
+name 'mirage_hud'
 author 'Mirage (merged)'
-description 'NoPixel Inspired HUD — player / car / minimap / pulse (single resource)'
-version '2.1.0'
+description 'Modern modular HUD for FiveM — player / car / minimap / pulse (single resource)'
+version '2.2.0'
 
 ui_page 'html/index.html'
 
