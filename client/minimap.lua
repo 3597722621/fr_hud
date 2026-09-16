@@ -19,13 +19,16 @@ CreateThread(function()
         local safeZoneOffsetY = resY * ((1.0 - safeZone) / 2.0)
         
         -- Orijinal mükemmel değerlerin (1920x1080)
+        -- Original values, tuned for 1920x1080
         local targetX = 0.837
         local targetY = 0.110
         local targetWidth = 0.120
         -- Haritanın yuvarlak olması için AspectRatio ile büküyoruz
+        -- Warp by the aspect ratio so the map stays circular
         local targetHeight = 0.75 * targetWidth * aspectRatio
         
         -- SafeZone'u GTA için tersine çevirme (Çünkü GTA L,T'de otomatik SafeZone uygular)
+        -- Invert the safezone for GTA (GTA already applies the safezone to L,T)
         local gtaX = ((targetX * resX) - safeZoneOffsetX) / (resX * safeZone)
         local gtaY = ((targetY * resY) - safeZoneOffsetY) / (resY * safeZone)
         local gtaWidth = targetWidth / safeZone
@@ -60,6 +63,7 @@ CreateThread(function()
             local sz = GetSafeZoneSize()
             
             -- Uyarı Ekranı Mantığı
+            -- Safezone warning logic
             if sz < 0.99 then
                 if not warningActive then
                     warningActive = true
@@ -100,6 +104,7 @@ CreateThread(function()
     while true do
         Wait(0)
         -- Diger default HUD elementlerini gizle
+        -- Hide the other default HUD components
         HideHudComponentThisFrame(1)
         HideHudComponentThisFrame(2)
         HideHudComponentThisFrame(3)

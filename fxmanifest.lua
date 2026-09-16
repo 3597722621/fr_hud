@@ -5,13 +5,15 @@ lua54 'yes'
 name 'nopixel_hud'
 author 'Mirage (merged)'
 description 'NoPixel Inspired HUD — player / car / minimap / pulse (single resource)'
-version '2.0.0'
+version '2.1.0'
 
 ui_page 'html/index.html'
 
 shared_scripts {
     'config.lua'
 }
+
+server_scripts { 'server/update.lua' }
 
 client_scripts {
     'client/main.lua',

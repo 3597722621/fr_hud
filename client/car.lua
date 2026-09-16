@@ -1,4 +1,5 @@
 -- Emniyet Kemeri Ses Bankasi Yukleme
+-- Load the seatbelt sound bank
 CreateThread(function()
     RequestScriptAudioBank('audiodirectory/seatbelt_sounds', false)
 end)

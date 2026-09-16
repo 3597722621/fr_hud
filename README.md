@@ -14,6 +14,7 @@ Supports **ESX**, **QBCore**, and **Qbox** with auto framework detection.
 - Pulse (heart rate) UI
 - Auto UI scaling for different resolutions
 - Simple `config.lua`
+- GitHub update check (server console notice on startup)
 
 ## Framework / Needs
 
@@ -59,6 +60,29 @@ Edit `config.lua`:
 - `Config.CrashSpeedThreshold`
 - `Config.BleedingHealthThreshold`
 - `Config.HealingEvents`
+- `Config.UpdateCheck`
+
+## Update Check
+
+On startup the server queries the GitHub repo once and prints a notice to the server console when a newer version exists. Players are never notified.
+
+```lua
+Config.UpdateCheck = {
+    enabled = true,
+    repository = '3597722621/nopixel_hud', -- owner/repo, empty disables the check
+    downloadUrl = '',                      -- empty = repo releases page
+    debug = false,                         -- log failures / "already up to date"
+}
+```
+
+The check reads `api.github.com/repos/<repository>/releases/latest` and falls back to the tag list when the repo has no release. The local version comes from `version` in `fxmanifest.lua`, so bump it on every release.
+
+## Changelog
+
+### 2.1.0
+
+- Added GitHub update check: the server console prints a notice when a newer release/tag exists
+- Comments are now bilingual (English added alongside the original Chinese/Turkish notes)
 
 ## Credits
 
